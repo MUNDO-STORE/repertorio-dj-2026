@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>Mundo DJ 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background: url('2.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #fff;
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: -2;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(0,255,174,0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(0,255,174,0.06) 0%, transparent 60%);
+    animation: pulse-bg 18s ease-in-out infinite alternate;
+    z-index: -1;
+}
+
+@keyframes pulse-bg {
+    0% { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 0.9; transform: scale(1.05); }
+}
+
+header {
+    padding: clamp(60px, 12vw, 100px) 20px 50px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1.2s ease-out forwards;
+}
+
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-size: clamp(36px, 8vw, 54px);
+    font-weight: 800;
+    color: #00ffae;
+    text-shadow: 0 0 30px rgba(0,255,174,0.6);
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 20px rgba(0,255,174,0.5); }
+    to   { text-shadow: 0 0 50px rgba(0,255,174,0.9), 0 0 80px rgba(0,255,174,0.4); }
+}
+
+.subtitle {
+    margin-top: 12px;
+    font-size: clamp(16px, 4vw, 20px);
+    color: #ccc;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(20px, 5vw, 40px) 15px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: clamp(30px, 6vw, 60px);
+    align-items: center;
+}
+
+.mockup {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeUp 1.3s 0.5s ease-out forwards;
+}
+
+.mockup img {
+    width: 100%;
+    max-width: clamp(280px, 70vw, 400px);
+    border-radius: 32px;
+    box-shadow: 0 20px 60px rgba(0,255,174,0.4);
+    transition: all 0.5s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+.mockup img:hover {
+    transform: scale(1.04) translateY(-12px);
+    box-shadow: 0 30px 80px rgba(0,255,174,0.6);
+}
+
+ul {
+    margin-top: 20px;
+    line-height: 1.9;
+    color: #ddd;
+    font-size: clamp(15px, 3.5vw, 17px);
+}
+
+li {
+    opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInLeft 0.8s ease-out forwards;
+    animation-delay: calc(0.08s * var(--i));
+}
+
+@keyframes slideInLeft {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.highlight {
+    background: linear-gradient(135deg, #00ffae, #00d494);
+    color: #000;
+    padding: clamp(16px, 4vw, 22px);
+    border-radius: 16px;
+    font-weight: 700;
+    margin: 30px 0;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,255,174,0.3);
+    transition: all 0.4s ease;
+}
+
+.highlight:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 40px rgba(0,255,174,0.5);
+}
+
+.cta {
+    display: inline-block;
+    background: linear-gradient(135deg, #00ffae, #00d494);
+    color: #000;
+    padding: clamp(16px, 5vw, 22px) clamp(30px, 8vw, 60px);
+    border-radius: 50px;
+    font-size: clamp(20px, 5vw, 24px);
+    font-weight: 800;
+    text-decoration: none;
+    margin: 30px auto 0;
+    width: fit-content;
+    max-width: 100%;
+    box-shadow: 0 10px 30px rgba(0,255,174,0.5);
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 20px 50px rgba(0,255,174,0.7);
+}
+
+.price-container {
+    text-align: center;
+    margin: 25px 0;
+}
+
+.old-price {
+    font-size: clamp(18px, 4.5vw, 22px);
+    color: #ccc;
+    text-decoration: line-through;
+}
+
+.new-price {
+    font-size: clamp(42px, 12vw, 60px);
+    font-weight: 900;
+    color: #00ffae;
+    margin: 8px 0;
+    animation: pulsePrice 2s infinite ease-in-out;
+}
+
+@keyframes pulsePrice {
+    0%,100% { transform: scale(1); }
+    50%     { transform: scale(1.06); }
+}
+
+.warning {
+    margin-top: 20px;
+    color: #ffcc00;
+    font-weight: 600;
+    text-align: center;
+    font-size: clamp(14px, 3.8vw, 16px);
+}
+
+.section-title {
+    text-align: center;
+    font-size: clamp(28px, 7vw, 38px);
+    margin: clamp(50px, 10vw, 80px) 0 40px;
+    color: #00ffae;
+}
+
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto 60px;
+}
+
+.testimonial {
+    background: rgba(27,27,27,0.7);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,255,174,0.25);
+    border: 1px solid rgba(0,255,174,0.15);
+    transition: all 0.4s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.testimonial:nth-child(1) { animation: fadeUp 0.8s 0.2s forwards; }
+.testimonial:nth-child(2) { animation: fadeUp 0.8s 0.4s forwards; }
+.testimonial:nth-child(3) { animation: fadeUp 0.8s 0.6s forwards; }
+.testimonial:nth-child(4) { animation: fadeUp 0.8s 0.8s forwards; }
+.testimonial:nth-child(5) { animation: fadeUp 0.8s 1.0s forwards; }
+
+.testimonial:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0,255,174,0.4);
+}
+
+.testimonial img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid #00ffae;
+}
+
+.testimonial h3 {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.testimonial p:first-of-type {
+    font-style: italic;
+    color: #ddd;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.testimonial p:last-of-type {
+    color: #00ffae;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+
+.mini-cta {
+    display: inline-block;
+    background: #00ffae;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(0,255,174,0.4);
+    transition: all 0.3s ease;
+}
+
+.mini-cta:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,255,174,0.6);
+    background: #00d494;
+}
+
+.footer {
+    text-align: center;
+    padding: clamp(40px, 8vw, 60px) 20px;
+    color: #888;
+    font-size: clamp(13px, 3vw, 15px);
+    border-top: 1px solid rgba(0,255,174,0.2);
+}
+
+/* Animações */
+@keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<header>
+<h1>MUNDO DJ 2026</h1>
+<p class="subtitle">O maior acervo profissional para DJs do Brasil</p>
+</header>
+
+<div class="container">
+
+<div class="grid">
+<div>
+<h2>Tudo que você precisa em um único pagamento</h2>
+<ul>
+<li style="--i:1">+7 Terabytes de músicas</li>
+<li style="--i:2">+2 Terabytes de efeitos sonoros</li>
+<li style="--i:3">Efeitos para Podcast ou edição de vídeos</li>
+<li style="--i:4">Repertórios atualizados</li>
+<li style="--i:5">Videoclipes, VS e Playbacks</li>
+<li style="--i:6">Músicas Extend</li>
+<li style="--i:7">Softwares para DJ</li>
+<li style="--i:8">Packs para academia</li>
+<li style="--i:9">Pack Gospel Profissional</li>
+<li style="--i:10">Pack Eletrônica, Mashups e Desande</li>
+<li style="--i:11">Pack DJ Retro (Flashback, Eurodance etc)</li>
+<li style="--i:12">Pack Funk (Light, Mega, Eletrofunk)</li>
+<li style="--i:13">Pack Festas (Casamento, 15 anos, Carnaval, Junina)</li>
+<li style="--i:14">Músicas Lofi (Estudar, Dormir, Jogar)</li>
+</ul>
+
+<div class="highlight">
+✅ 100% HOSPEDADO NO TELEGRAM<br>
+✅ ATUALIZAÇÕES CONSTANTES (TUDO QUE CONSEGUIMOS VAI PARA O GRUPO!)<br>
+Pagamento único • Sem mensalidades
+</div>
+
+<p style="margin-top:15px;color:#ccc">Após o pagamento você recebe automaticamente os links de acesso no seu E-MAIL cadastrado.</p>
+
+<div class="price-container">
+<p style="font-size: clamp(16px,4vw,18px); color:#ccc;">De <span class="old-price">R$197,00</span> por apenas:</p>
+<p class="new-price">R$50,00</p>
+<p style="color:#ffcc00;font-weight:600;">🔥 Oferta promocional por tempo limitado</p>
+<a class="cta" href="https://mundodj.erby.site/product/dj-pro-r$50,00">GARANTIR AGORA POR R$50,00</a>
+</div>
+
+<p class="warning">⚠ Para baixar o material é obrigatório ter TELEGRAM instalado.</p>
+
+</div>
+
+<div class="mockup">
+<img src="1.png" alt="Telegram no celular">
+</div>
+</div>
+
+<div class="extra-section">
+<div style="grid-column:1/-1;">
+<h2 style="color:#00ffae;font-size: clamp(24px,6vw,28px);margin-bottom:20px;text-align:center;">REPERTÓRIOS JÁ MONTADOS</h2>
+<p style="color:#ddd;line-height:1.8;font-size: clamp(15px,4vw,17px);text-align:center;margin-bottom:30px;">
+Repertórios organizados para atualizar seu pendrive ou revender. Separado por estilos e eventos:
+</p>
+<div style="columns:2; column-gap:40px; color:#fff; line-height:2; font-weight:500; font-size: clamp(15px,3.5vw,17px);">
+01 ARROCHA<br>
+02 FORRÓ NOVO<br>
+03 FORRÓ DE PAREDÃO<br>
+04 FORRÓ DELAS<br>
+05 FORRÓ NOS TECLADOS<br>
+06 FORRÓ DE FAVELA<br>
+07 FORRÓ DAS ANTIGAS<br>
+08 FUNK HITS<br>
+09 BREGADEIRA<br>
+10 BREGAFUNK<br>
+11 SWINGUEIRA<br>
+12 ELETRO E MEGAFUNK<br>
+13 ARROCHADEIRA<br>
+14 PISEIRO<br>
+15 SAMBA E PAGODE<br>
+16 SERTANEJO<br>
+19 RAP E TRAP<br>
+20 FLASHBACK 70 80 90<br>
+21 TECNOMELODY<br>
+22 ROCK<br>
+23 MPB<br>
+24 SERESTA<br>
+25 GOSPEL<br>
+26 VAQUEJADA<br>
+27 REGGAE<br>
+28 BREGA<br>
+29 GAÚCHAS<br>
+30 TOP CHOFFER
+</div>
+</div>
+</div>
+
+<h2 class="section-title">Depoimentos / Prova Social</h2>
+
+<div class="testimonials-grid">
+
+<div class="testimonial">
+<img src="https://thumbs.dreamstime.com/b/music-headphone-streaming-happy-fashion-black-woman-smile-outdoor-brazil-happiness-girl-feeling-relax-freedom-cheerful-259422437.jpg" alt="Ana Silva">
+<h3>Ana Silva - MT</h3>
+<p>"Comprei e não me arrependo nem um segundo! Por R$50 peguei um acervo gigante que uso todo final de semana. Compensa demais, indico pra qualquer DJ que quer economizar e ter material top!"</p>
+<p>Instagram</p>
+<a class="mini-cta" href="https://mundodj.erby.site/product/dj-pro-r$50,00" target="_blank">Comprar Agora por R$50</a>
+</div>
+
+<div class="testimonial">
+<img src="https://as1.ftcdn.net/jpg/02/89/92/00/1000_F_289920059_iVtfdInv4el7IU9hKsYxCs2eNDu6fkxE.jpg" alt="Lucas Mendes">
+<h3>Lucas Mendes - SP</h3>
+<p>"Vale cada centavo! Os packs de festas e mashups salvaram minhas apresentações. Atualizam toda semana, é insano o quanto compensa. Quem tá na dúvida, corre pra comprar!"</p>
+<p>Facebook</p>
+<a class="mini-cta" href="https://mundodj.erby.site/product/dj-pro-r$50,00" target="_blank">Comprar Agora por R$50</a>
+</div>
+
+<div class="testimonial">
+<img src="https://cdn1.matadornetwork.com/blogs/1/2015/08/Brazilian-woman-with-headphones-smiling--1200x854.jpg" alt="Mariana Costa">
+<h3>Mariana Costa - RJ</h3>
+<p>"Indicação sincera: comprei pensando em testar e agora não vivo sem. Material profissional, organizado no Telegram e por só R$50? Compensa 10x mais que qualquer outro pacote. Pega logo!"</p>
+<p>Instagram</p>
+<a class="mini-cta" href="https://mundodj.erby.site/product/dj-pro-r$50,00" target="_blank">Comprar Agora por R$50</a>
+</div>
+
+<div class="testimonial">
+<img src="https://as1.ftcdn.net/jpg/03/03/76/04/1000_F_303760482_0We7GHMM1Tkw9q7wuYOecrHgqXke9Cl0.jpg" alt="Pedro Oliveira">
+<h3>Pedro Oliveira - BA</h3>
+<p>"Melhor investimento que fiz esse ano! +7TB de música + efeitos + repertórios prontos por R$50 é loucura de tão bom. Recomendo pra todo mundo que trabalha com evento. Compensa demais!"</p>
+<p>Facebook</p>
+<a class="mini-cta" href="https://mundodj.erby.site/product/dj-pro-r$50,00" target="_blank">Comprar Agora por R$50</a>
+</div>
+
+<div class="testimonial">
+<img src="https://thumbs.dreamstime.com/b/female-dj-young-african-american-playing-music-party-48919247.jpg" alt="Beatriz Santos">
+<h3>Beatriz Santos - GO</h3>
+<p>"Comprei na promoção e fiquei impressionada com a qualidade e quantidade. Os packs gospel e funk são perfeitos pros meus gigs. Vale muito a pena, tô indicando pra todos os meus amigos DJs!"</p>
+<p>Instagram</p>
+<a class="mini-cta" href="https://mundodj.erby.site/product/dj-pro-r$50,00" target="_blank">Comprar Agora por R$50</a>
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+© 2026 Mundo DJ - Todos os direitos reservados
+</div>
+
+</body>
+</html>
